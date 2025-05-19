@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: metrics-ui-monitor
+  labels:
+    release: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: metrics-ui
+  endpoints:
+  - port: http
+    interval: 5s
+  namespaceSelector:
+    matchNames:
+    - default

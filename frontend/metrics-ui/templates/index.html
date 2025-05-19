@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Plataforma de Aprendizaje - Gamificada</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <h1>🎯 Actividades para completar</h1>
+  <div id="score">
+    ✅ Éxitos: <span id="successCount">0</span> |
+    ❌ Fallos: <span id="failCount">0</span>
+  </div>
+
+  <ul id="taskList">
+    <li>
+      Responder a una pregunta simple
+      <button onclick="sendMetric('success', 'Responder a una pregunta simple')">✔️ Completada</button>
+      <button onclick="sendMetric('fail', 'Responder a una pregunta simple')">❌ Fallada</button>
+    </li>
+    <li>
+      Resolver un acertijo
+      <button onclick="sendMetric('success', 'Resolver un acertijo')">✔️ Completada</button>
+      <button onclick="sendMetric('fail', 'Resolver un acertijo')">❌ Fallada</button>
+    </li>
+  </ul>
+
+  <h2>📝 Formulario de Registro</h2>
+  <form id="formulario" method="POST">
+    <label>Nombre: <input type="text" name="nombre" /></label><br><br>
+    <label>Edad: <input type="text" name="edad" /></label><br><br>
+    <label>Email: <input type="text" name="email" /></label><br><br>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <div id="mensaje"></div>
+
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

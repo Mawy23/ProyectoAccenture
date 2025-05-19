@@ -1,0 +1,21 @@
+- name: Construir y cargar imagen todo-api en Minikube
+  shell: |
+    cd {{ playbook_dir }}/../../todo-app
+    minikube image build -t {{ app_image }} .
+
+- name: Esperar a que el API server de Kubernetes esté disponible
+  ansible.builtin.command: kubectl get nodes
+  register: kubectl_status
+  retries: 10
+  delay: 5
+  until: kubectl_status.rc == 0
+
+- name: Desplegar Deployment + Service
+  ansible.builtin.command: >
+    kubectl apply --validate=false
+    -f /mnt/c/Users/frang/Desktop/TFGPSS/todo-app/deployment.yaml
+    -f /mnt/c/Users/frang/Desktop/TFGPSS/todo-app/service.yaml
+
+- name: Forzar rollout del Deployment para refrescar la imagen
+  shell: |
+    kubectl rollout restart deployment/todo-api

@@ -1,0 +1,19 @@
+---
+- name: Anotar Service todo-api para que Prometheus scrapee
+  shell: |
+    kubectl annotate service todo-api \
+      prometheus.io/scrape="true" \
+      prometheus.io/path="/metrics" \
+      prometheus.io/port="80" \
+      --overwrite
+
+- name: Esperar a que la CRD ServiceMonitor esté disponible
+  shell: kubectl get crd servicemonitors.monitoring.coreos.com
+  register: crd_check
+  retries: 10
+  delay: 5
+  until: crd_check.rc == 0
+
+- name: Aplicar ServiceMonitor de todo-api
+  shell: |
+    kubectl apply -f {{ playbook_dir }}/../../todo-app/todo-servicemonitor.yaml

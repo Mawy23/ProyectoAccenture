@@ -1,0 +1,34 @@
+---
+- name: Comprobar si Minikube está arrancado
+  command: minikube status
+  register: mk
+  failed_when: false      # ← no abortar si rc != 0
+  changed_when: false
+
+- name: Iniciar Minikube si no está corriendo
+  command: minikube start --driver=docker
+  when: "'host: Running' not in mk.stdout"
+
+- name: Añadir repos de Helm y actualizar
+  shell: |
+    helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+    helm repo add grafana           https://grafana.github.io/helm-charts
+    helm repo update
+
+- name: Instalar kube-prometheus-stack con Helm
+  community.kubernetes.helm:
+    name: monitoring
+    chart_ref: prometheus-community/kube-prometheus-stack
+    release_namespace: monitoring
+    create_namespace: true
+    state: present
+
+- name: Instalar o actualizar kube-prometheus-stack con Helm
+  shell: |
+    helm repo add prometheus-community https://prometheus-community.github.io/helm-charts || true
+    helm repo update
+    helm upgrade --install monitoring prometheus-community/kube-prometheus-stack \
+      --namespace monitoring --create-namespace
+  args:
+    executable: /bin/bash
+

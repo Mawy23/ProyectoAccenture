@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario</title>
+</head>
+<body>
+  <h1>Formulario de Registro</h1>
+  <form action="/formulario" method="POST">
+    <label>Nombre: <input type="text" name="nombre"></label><br><br>
+    <label>Edad: <input type="text" name="edad"></label><br><br>
+    <label>Email: <input type="text" name="email"></label><br><br>
+    <button type="submit">Enviar</button>
+  </form>
+
+  {% if error %}
+    <p style="color:red">{{ error }}</p>
+  {% elif mensaje %}
+    <p style="color:green">{{ mensaje }}</p>
+  {% endif %}
+</body>
+</html>

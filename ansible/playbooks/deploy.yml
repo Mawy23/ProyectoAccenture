@@ -1,0 +1,9 @@
+- name: Bootstrapping & deploy Todo-App stack
+  hosts: localhost
+  connection: local
+  vars:
+    app_image: "todo-api:0.3"
+  roles:
+    - kubernetes
+    - todo-app
+    - monitoring

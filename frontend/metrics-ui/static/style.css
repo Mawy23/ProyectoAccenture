@@ -1,0 +1,25 @@
+body {
+  font-family: sans-serif;
+  padding: 2em;
+  background: #f0f0f0;
+}
+
+h1 {
+  color: #333;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  background: white;
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+button {
+  margin-left: 1em;
+  padding: 0.5em;
+}

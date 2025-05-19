@@ -1,0 +1,7 @@
+
+- name: Tear down Todo-App stack
+  hosts: localhost
+  connection: local
+  roles:
+    - role: todo-app
+      when: false   # opcional: aquí podrías definir un role destroy

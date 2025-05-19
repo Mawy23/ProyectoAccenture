@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: metrics-ui
+  namespace: default
+  labels:
+    app: metrics-ui
+    release: monitoring  # ← Necesario para el operador Prometheus
+spec:
+  selector:
+    app: metrics-ui
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http         # ← Necesario para que el ServiceMonitor encuentre el puerto
