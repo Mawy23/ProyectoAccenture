@@ -6,8 +6,6 @@
 ![Prometheus](https://img.shields.io/badge/Prometheus-Metrics-orange?logo=prometheus)
 ![Grafana](https://img.shields.io/badge/Grafana-Dashboarding-yellow?logo=grafana)
 
-> Un proyecto friki inspirado en Pokémon para automatizar, monitorizar y jugar con tu stack educativo DevOps 🎮✨
-
 ---
 
 ## 📦 Tecnologías utilizadas
@@ -23,7 +21,6 @@
 ## 🚀 ¿Qué hace este proyecto?
 
 - Automatiza todo con un `start.sh` mágico
-- Despliega una app educativa gamificada
 - Recoge métricas del comportamiento del usuario
 - Expone métricas en `/metrics` para Prometheus
 - Visualiza todo en tiempo real con Grafana
